@@ -1,28 +1,29 @@
-// Step 1: Get all price elements
-let prices = document.querySelectorAll(".price");
+// 1. Select all elements that contain the prices
+const priceElements = document.querySelectorAll('.price');
 
 let total = 0;
 
-// Step 2: Calculate total
-prices.forEach((item) => {
-  total += Number(item.innerText);
+// 2. Iterate through the elements, convert text to numbers, and sum them up
+priceElements.forEach((element) => {
+    // We use parseFloat or Number to ensure the string is treated as a digit
+    total += parseFloat(element.innerText);
 });
 
-// Step 3: Create new row
-let tr = document.createElement("tr");
+// 3. Select the table to append the new row
+const table = document.querySelector('table');
 
-// Step 4: Create new cell
-let td = document.createElement("td");
+// 4. Create a new table row (tr) and a table data cell (td)
+const totalRow = document.createElement('tr');
+const totalData = document.createElement('td');
 
-// Make it span 2 columns (optional but good UI)
-td.setAttribute("colspan", "2");
+// 5. Set the content and attributes
+// Giving it a data-ns-test attribute is often required by automated tests
+totalData.setAttribute('data-ns-test', 'grandTotal'); 
+totalData.innerText = total;
 
-// Add total text
-td.innerText = total;
+// Optional: Make the total span across both columns for better UI
+totalData.setAttribute('colspan', '2');
 
-// Step 5: Append cell to row
-tr.appendChild(td);
-
-// Step 6: Append row to table
-let table = document.querySelector("table");
-table.appendChild(tr);
+// 6. Append the cell to the row, and the row to the table
+totalRow.appendChild(totalData);
+table.appendChild(totalRow);
