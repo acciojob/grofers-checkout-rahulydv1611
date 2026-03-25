@@ -1,24 +1,23 @@
-const priceElements = document.querySelectorAll('.prices');
+// Step 1: Get all price elements
+let prices = document.querySelectorAll(".prices");
+
+// Step 2: Calculate total
 let total = 0;
 
-// Calculate sum
-priceElements.forEach((element) => {
-    total += Number(element.innerText);
+prices.forEach((price) => {
+    total += Number(price.textContent);
 });
 
-// Select the table
-const table = document.querySelector('table');
+// Step 3: Create new row and cell
+let table = document.querySelector("table");
 
-// Create the new row
-const totalRow = document.createElement('tr');
+let newRow = document.createElement("tr");
+let newCell = document.createElement("td");
 
-// Create the cell
-const totalData = document.createElement('td');
+// Step 4: Set text and span across 2 columns
+newCell.textContent = "Total: " + total;
+newCell.colSpan = 2;
 
-// IMPORTANT: The test looks for this specific attribute
-totalData.setAttribute('data-ns-test', 'grandTotal');
-totalData.innerText = total;
-
-// Append to table
-totalRow.appendChild(totalData);
-table.appendChild(totalRow);
+// Step 5: Append cell to row and row to table
+newRow.appendChild(newCell);
+table.appendChild(newRow);
