@@ -1,24 +1,24 @@
-// 1. Select all elements with class "prices"
 const priceElements = document.querySelectorAll('.prices');
-
 let total = 0;
 
-// 2. Sum the values
+// Calculate sum
 priceElements.forEach((element) => {
     total += Number(element.innerText);
 });
 
-// 3. Get the table reference
+// Select the table
 const table = document.querySelector('table');
 
-// 4. Create a new row and a single cell
+// Create the new row
 const totalRow = document.createElement('tr');
+
+// Create the cell
 const totalData = document.createElement('td');
 
-// 5. Apply the required test attribute and the sum
+// IMPORTANT: The test looks for this specific attribute
 totalData.setAttribute('data-ns-test', 'grandTotal');
 totalData.innerText = total;
 
-// 6. Append to the table
+// Append to table
 totalRow.appendChild(totalData);
 table.appendChild(totalRow);
